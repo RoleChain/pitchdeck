@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import {
   Carousel,
@@ -7,6 +8,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel"
 import image1 from "@/assets/Intro.png"
 import image2 from "@/assets/Slide 1.png"
@@ -111,29 +113,85 @@ const slides = [
 ]
 
 export default function PresentationSlider() {
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        api?.scrollPrev()
+      } else if (e.key === 'ArrowRight') {
+        api?.scrollNext()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [api])
+
+  // Track current slide
+  useEffect(() => {
+    if (!api) return
+
+    api.on('select', () => {
+      setCurrent(api.selectedScrollSnap())
+    })
+  }, [api])
+
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-8">
-      <Carousel className="w-full">
+    <div className="w-full max-w-6xl mx-auto px-4 py-8 relative bg-gradient-to-b from-background via-background/80 to-background rounded-xl">
+
+      <Carousel
+        setApi={setApi}
+        className="w-full"
+        opts={{
+          loop: true,
+        }}
+      >
         <CarouselContent>
-          {slides.map((slide) => (
+          {slides.map((slide, index) => (
             <CarouselItem key={slide.id}>
               <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
                 <Image
                   src={slide.src}
                   alt={slide.alt}
                   fill
-                  className="object-contain"
-                  priority
+                  className="object-contain transition-opacity duration-300 hover:scale-105"
+                  loading={index <= 2 ? "eager" : "lazy"} // Load first 3 images eagerly
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                  quality={75}
                 />
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="flex items-center justify-center gap-2 mt-4">
-          <CarouselPrevious />
-          <CarouselNext />
+        
+        {/* Navigation controls with better mobile styling */}
+        <div className="flex items-center justify-center gap-4 mt-6">
+          <CarouselPrevious className="relative sm:absolute left-4 sm:-translate-y-[250%]" />
+          <div className="flex gap-3">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => api?.scrollTo(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  current === index
+                    ? 'w-3 h-3 bg-primary shadow-sm'
+                    : 'w-2 h-2 bg-primary/30 hover:bg-primary/50'
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+          <CarouselNext className="relative sm:absolute right-4 sm:-translate-y-[250%]" />
         </div>
       </Carousel>
+      
+      {/* Slide counter */}
+      <div className="text-center mt-4 text-sm text-muted-foreground">
+        Slide {current + 1} of {slides.length}
+      </div>
     </div>
   )
 }
