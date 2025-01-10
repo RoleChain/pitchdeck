@@ -23,7 +23,7 @@ import image10 from "@/assets/Slide 9.png"
 import image11 from "@/assets/Slide 10.png"
 import image12 from "@/assets/Slide 11.png"
 import image13 from "@/assets/Slide 12.png"
-import image14 from "@/assets/Slide 13.png"
+import image14 from "@/assets/Slide 13 (1).png"
 import image15 from "@/assets/Slide 14.png"
 import image16 from "@/assets/Slide 15.png"
 
@@ -157,7 +157,7 @@ export default function PresentationSlider() {
                   src={slide.src}
                   alt={slide.alt}
                   fill
-                  className="object-contain transition-opacity duration-300 hover:scale-105"
+                  className="object-contain "
                   loading={index <= 2 ? "eager" : "lazy"} // Load first 3 images eagerly
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                   quality={75}
@@ -169,13 +169,13 @@ export default function PresentationSlider() {
         
         {/* Navigation controls with better mobile styling */}
         <div className="flex items-center justify-center gap-4 mt-6">
-          <CarouselPrevious className="relative sm:absolute left-4 sm:-translate-y-[250%]" />
+          <CarouselPrevious className="relative sm:absolute left-4 md:-left-6 sm:-translate-y-[250%]" />
           <div className="flex gap-3">
             {slides.map((_, index) => (
               <button
                 key={index}
                 onClick={() => api?.scrollTo(index)}
-                className={`transition-all duration-300 rounded-full ${
+                className={` rounded-full ${
                   current === index
                     ? 'w-3 h-3 bg-primary shadow-sm'
                     : 'w-2 h-2 bg-primary/30 hover:bg-primary/50'
@@ -184,7 +184,7 @@ export default function PresentationSlider() {
               />
             ))}
           </div>
-          <CarouselNext className="relative sm:absolute right-4 sm:-translate-y-[250%]" />
+          <CarouselNext className="relative sm:absolute right-4 md:-right-6 sm:-translate-y-[250%]" />
         </div>
       </Carousel>
       
