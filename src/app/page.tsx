@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import PresentationSlider from '@/components/presentation-slider'
 import { ChatInterface } from '@/components/ui/chat-interface'
+import { Guide } from '@/components/Guide'
 
 function useIsWideScreen() {
   const [isWideScreen, setIsWideScreen] = useState(false)
@@ -42,7 +43,10 @@ export default function Home() {
         onOpenChange={setIsChatOpen} 
         className={`${isChatOpen ? 'z-40' : 'z-50'}`}
       />
+      <Guide />
     </main>
   )
 }
 
+
+ 
