@@ -1,4 +1,6 @@
 import { ImageResponse } from 'next/og'
+import Image from 'next/image'
+
 // Route segment config
 export const runtime = 'edge'
  
@@ -24,7 +26,7 @@ export default function Icon() {
           background: 'transparent',
         }}
       >
-        <img
+        <Image
           src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Vector%20(7)-P6eZ9AFGHmKNn4XwusG5Ae8wUYAmhu.png"
           alt="RolechAin Logo"
           style={{

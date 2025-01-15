@@ -11,7 +11,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel"
 import { Button } from "@/components/ui/button"
-import { Volume2, VolumeX, Pause, Play, User, Users, Mic, Radio } from 'lucide-react'
+import { Volume2, VolumeX, Pause, Play } from 'lucide-react'
 import {
   Select,
   SelectContent,
@@ -139,12 +139,12 @@ const slides = [
   },
 ]
 
-const getVoiceIcon = (voice: SpeechSynthesisVoice) => {
-  if (voice.name.toLowerCase().includes('female')) return <User className="h-4 w-4" />;
-  if (voice.name.toLowerCase().includes('male')) return <Users className="h-4 w-4" />;
-  if (voice.name.toLowerCase().includes('neural')) return <Mic className="h-4 w-4" />;
-  return <Radio className="h-4 w-4" />;
-};
+// const getVoiceIcon = (voice: SpeechSynthesisVoice) => {
+//   if (voice.name.toLowerCase().includes('female')) return <User className="h-4 w-4" />;
+//   if (voice.name.toLowerCase().includes('male')) return <Users className="h-4 w-4" />;
+//   if (voice.name.toLowerCase().includes('neural')) return <Mic className="h-4 w-4" />;
+//   return <Radio className="h-4 w-4" />;
+// };
 
 const getVoiceAvatarFallback = (voice: SpeechSynthesisVoice) => {
   return voice.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
