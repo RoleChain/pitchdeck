@@ -1,5 +1,3 @@
-
-
 'use client'
 
 import { useEffect, useState, useRef } from 'react'
@@ -37,30 +35,30 @@ const slides = [
     id: 1,
     src: image1,
     alt: "RolechAin Introduction Slide",
-    content: "Welcome to RolechAin, the Role Play Agent Infrastructure for Web3. Our platform revolutionizes the way AI agents interact and operate in the decentralized web ecosystem."
+    content: "Welcome to role chain, the Role Play Agent Infrastructure for Web3. Our platform revolutionizes the way A I agents interact and operate in the decentralized web ecosystem."
   },
   {
     id: 2,
     src: image2,
     alt: "RolechAin AI Agent Infrastructure Slide",
-    content: "RolechAin is the cutting-edge AI Agent Infrastructure for Web3. We provide a robust framework where developers and businesses can create, customize, train, and deploy AI agents for any role imaginable in the decentralized landscape."
+    content: "Role chain is the cutting-edge A I Agent Infrastructure for Web3. We provide a robust framework where developers and businesses can create, customize, train, and deploy A I agents for any role imaginable in the decentralized landscape."
   },
   {
     id: 3,
     src: image3,
     alt: "RolechAin Create Your Own Role Slide",
-    content: "Create Your Own Role-Playing AI Agents with RolechAin. Our platform empowers your community with personalized AI agents that learn, adapt, and automate tasks. Whether you're integrating with existing token systems or building something entirely new, RolechAin has you covered."
+    content: "Create Your Own Role-Playing A I Agents with Role chain. Our platform empowers your community with personalized A I agents that learn, adapt, and automate tasks. Whether you're integrating with existing token systems or building something entirely new, Role chain has you covered."
   },
   {
     id: 4,
     src: image4,
     alt: "RolechAin Features Overview",
-    content: "Discover the key features of RolechAin: Decentralized learning, real-time adaptation, seamless Web3 integration, and customizable AI personalities. Our platform ensures your AI agents are always at the forefront of blockchain technology."
+    content: "Discover the key features of Role chain: Decentralized learning, real-time adaptation, seamless Web3 integration, and customizable A I personalities. Our platform ensures your A I agents are always at the forefront of blockchain technology."
   },
   {
     id: 5,
     src: image5,
-    alt: "RolechAin Create Your Own Role Slide",
+    alt: "Role chain Create Your Own Role Slide",
     content: "Slide 5 content"
   },
   {
@@ -175,23 +173,24 @@ export default function PresentationSlider() {
 
     const loadVoices = () => {
       const availableVoices = speechSynthesis.current?.getVoices() || []
-      const englishVoices = availableVoices.filter(voice => voice.lang.startsWith('en-'))
-      const maleVoice = englishVoices.find(voice =>
-        voice.name.toLowerCase().includes('male') ||
-        voice.name.toLowerCase().includes('david') ||
-        voice.name.toLowerCase().includes('james') ||
-        voice.name.toLowerCase().includes('john')
+      // Specifically look for Rishi voice
+      const rishiVoice = availableVoices.find(voice => 
+        voice.name === 'Rishi' && 
+        voice.lang === 'en-IN'
       )
-      const femaleVoice = englishVoices.find(voice =>
-        voice.name.toLowerCase().includes('female') ||
-        voice.name.toLowerCase().includes('zira') ||
-        voice.name.toLowerCase().includes('samantha') ||
-        voice.name.toLowerCase().includes('susan')
-      )
-      const selectedVoices = [maleVoice, femaleVoice].filter(Boolean) as SpeechSynthesisVoice[]
-      setVoices(selectedVoices)
-      if (selectedVoices.length > 0) {
-        setSelectedVoice(selectedVoices[0].name)
+      
+      if (rishiVoice) {
+        setVoices([rishiVoice])
+        setSelectedVoice(rishiVoice.name)
+      } else {
+        // Fallback to English voices if Rishi is not found
+        const englishVoices = availableVoices.filter(voice => 
+          voice.lang.startsWith('en-')
+        )
+        setVoices(englishVoices)
+        if (englishVoices.length > 0) {
+          setSelectedVoice(englishVoices[0].name)
+        }
       }
     }
 
