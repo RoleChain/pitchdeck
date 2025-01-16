@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { Card, CardContent, CardFooter, CardHeader } from './card'
 import { Textarea } from './textarea'
-import Token from '@/assets/avatar/Token.png'
+import Agent from '@/assets/avatar/agent.png'
 import Image from 'next/image'
 
 interface Message {
@@ -101,11 +101,11 @@ export function ChatInterface({ onOpenChange, className }: ChatInterfaceProps) {
         animate={{ scale: 1, opacity: 1 }}
       >
         <motion.div
-          className="absolute inset-0 rounded-full bg-amber-400/20"
+          className="absolute inset-0 rounded-full bg-pink-400/20"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
         />
-        <span className="text-2xl"><Image src={Token || "/placeholder.svg"} alt="Token" className="w-full h-full" /></span>
+        <span className="text-2xl"><Image src={Agent || "/placeholder.svg"} alt="Token" className="w-10 h-10" /></span>
       </motion.button>
 
       <AnimatePresence>

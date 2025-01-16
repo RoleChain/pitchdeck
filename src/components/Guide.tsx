@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import chatIcon from '@/assets/avatar/Token.png'
+import chatIcon from '@/assets/avatar/agent.png'
 import pauseSlideIcon from '@/assets/avatar/slidepause.png'
 import voiceIcon from '@/assets/avatar/voice.png'
 
