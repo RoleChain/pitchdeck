@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useRef, useEffect } from 'react'
@@ -157,7 +156,7 @@ export function ChatInterface({ onOpenChange, className }: ChatInterfaceProps) {
                     >
                       <div
                         className={cn(
-                          "rounded-lg px-4 py-2 max-w-[80%]",
+                          "rounded-lg px-4 py-2 max-w-[80%] break-words",
                           message.role === 'user'
                             ? 'bg-amber-400 text-black'
                             : 'bg-zinc-800 text-amber-400'
