@@ -78,7 +78,7 @@ export function ChatInterface({ onOpenChange, className }: ChatInterfaceProps) {
     setTimeout(() => {
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
-        content: "Thank you for your question about The Laws of Money. I'll help guide you through the principles of wealth creation and financial success.",
+        content: "Thank you for your question . I'll help guide you through....",
         role: 'assistant',
         timestamp: new Date()
       }
