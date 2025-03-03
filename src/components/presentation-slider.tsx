@@ -362,7 +362,7 @@ import image10 from "@/assets/Slide 9.png"
 import image11 from "@/assets/Slide 10.png"
 import image12 from "@/assets/Slide 11.png"
 import image13 from "@/assets/Slide 12.png"
-import image14 from "@/assets/Slide 13 (1).png"
+import image14 from "@/assets/Slide 13.png"
 import image15 from "@/assets/Slide 14.png"
 import image16 from "@/assets/Slide 15.png"
 
